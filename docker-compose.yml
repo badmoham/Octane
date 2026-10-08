@@ -1,8 +1,7 @@
-version: '3'
 
 services:
   db:
-    image: mariadb
+    image: mariadb:12
     restart: always
     environment:
       MYSQL_DATABASE: salt
@@ -31,7 +30,8 @@ services:
   master:
     build:
       context: ./docker
-      dockerfile: Dockerfile-master
+      dockerfile: Dockerfile-salt
+      target: salt_master
     command: honcho start
     depends_on:
       - web
@@ -42,7 +42,8 @@ services:
   minion:
     build:
       context: ./docker
-      dockerfile: Dockerfile-minion
+      dockerfile: Dockerfile-salt
+      target: salt_minion
     command: salt-minion -l info
     depends_on:
       - master

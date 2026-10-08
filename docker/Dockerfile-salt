@@ -1,0 +1,59 @@
+FROM docker-mirror.liara.ir/python:3.14.6-slim-trixie AS base_salt_stage
+
+# Upgrade System and Install dependencies
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
+    curl \
+    python3-mysqldb \
+    netcat-openbsd \
+    xz-utils \
+    jq \
+    tar  \
+    gnupg \
+    build-essential \
+    ca-certificates &&  \
+    rm -rf /var/lib/apt/lists/*
+
+# Ensure keyrings dir exists
+RUN mkdir -m 755 -p /etc/apt/keyrings
+# Download public key
+RUN curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | gpg --dearmor | tee /etc/apt/keyrings/salt-archive-keyring.pgp > /dev/null
+# Create apt repo target configuration
+RUN curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | tee /etc/apt/sources.list.d/salt.sources
+
+
+FROM base_salt_stage AS salt_master
+
+
+RUN apt update
+RUN apt-get install -y salt-master
+
+# Set master and id
+COPY saltconfig/etc/minion /etc/salt/minion
+RUN echo "id: master">>/etc/salt/minion
+
+# Install python dependencies
+RUN apt-get install -y -o DPkg::Options::=--force-confold salt-api python3-openssl default-libmysqlclient-dev pkg-config
+RUN pip install honcho
+RUN salt-pip install mysqlclient
+RUN salt-pip install "pyOpenSSL<25"
+
+# Copy needed files
+COPY saltconfig/etc/master /etc/salt/master
+COPY saltconfig/salt /srv/salt
+COPY saltconfig/pillar /srv/pillar
+COPY utils/wait-for .
+COPY utils/Procfile .
+COPY utils/entrypoint-master.sh .
+
+# Sync auth and returners
+RUN salt-run saltutil.sync_all
+
+# Create salt-api certs
+RUN salt-call --local tls.create_self_signed_cert cacert_path='/etc/pki'
+
+ENTRYPOINT ["./entrypoint-master.sh"]
+
+
+FROM base_salt_stage AS salt_minion
+# TODO insert minion part here!

@@ -1,6 +1,6 @@
-FROM python:3.10-bullseye
+FROM python:3.14-bullseye
 
-MAINTAINER Matt Melquiond
+MAINTAINER badmoahm
 
 # Used in travis
 ARG USER_ID=1000

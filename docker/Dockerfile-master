@@ -1,12 +1,27 @@
-FROM python:3.10-bullseye
+FROM docker-mirror.liara.ir/python:3.14.6-slim-trixie
 
 # Upgrade System and Install dependencies
 RUN apt-get update && \
-  apt-get upgrade -y -o DPkg::Options::=--force-confold && \
-  apt-get install -y -o DPkg::Options::=--force-confold curl python3-mysqldb netcat
+  apt-get install -y --no-install-recommends \
+    curl \
+    python3-mysqldb \
+    netcat-openbsd \
+    xz-utils \
+    jq \
+    tar  \
+    gnupg \
+    ca-certificates &&  \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Latest Salt from the stable Branch
-RUN curl -L https://bootstrap.saltstack.com | sh -s -- -X -M -x python3 stable latest
+# Ensure keyrings dir exists
+RUN mkdir -m 755 -p /etc/apt/keyrings
+# Download public key
+RUN curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | gpg --dearmor | tee /etc/apt/keyrings/salt-archive-keyring.pgp > /dev/null
+# Create apt repo target configuration
+RUN curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | tee /etc/apt/sources.list.d/salt.sources
+
+RUN apt update
+RUN apt-get install -y salt-master
 
 # Set master and id
 COPY saltconfig/etc/minion /etc/salt/minion

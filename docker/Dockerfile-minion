@@ -1,12 +1,15 @@
-FROM python:3.10-bullseye
+FROM python:3.14-bullseye
 
 # Upgrade System and Install dependencies
 RUN apt-get update && \
   apt-get upgrade -y -o DPkg::Options::=--force-confold && \
   apt-get install -y -o DPkg::Options::=--force-confold curl netcat
 
-# Install Latest Salt from the stable Branch
-RUN curl -L https://bootstrap.saltstack.com | sh -s -- -D -r -P stable
+# Install Latest Salt from the stable Branch    # Repalce it with apt isntallations
+RUN curl -L https://github.com/saltstack/salt-bootstrap/releases/latest/download/bootstrap-salt.sh | sh -s -- -X stable
+
+RUN apt-get update && \
+    apt-get install -y salt-minion
 
 # Set master
 COPY saltconfig/etc/minion /etc/salt/minion

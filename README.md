@@ -77,9 +77,11 @@ More [here](https://github.com/latenighttales/alcali/blob/2019.2/docs/docs/scree
 
 ## License
 
-[MIT](LICENSE)
+[MIT]
 
-<sub><sub>Image: Jean-Philippe WMFr, derivative work : User:Benoit Rochon [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)</sub></sub>
+this project is a fork of *Alkali* project .
+
+
 
 ## Contributing
 
