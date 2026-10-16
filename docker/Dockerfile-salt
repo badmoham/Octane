@@ -50,7 +50,13 @@ COPY utils/entrypoint-master.sh .
 RUN salt-run saltutil.sync_all
 
 # Create salt-api certs
-RUN salt-call --local tls.create_self_signed_cert cacert_path='/etc/pki'
+RUN mkdir -p /etc/pki && \
+    salt-call --local x509.create_private_key \
+      path=/etc/pki/salt-api.key bits=2048 && \
+    salt-call --local x509.create_certificate \
+      path=/etc/pki/salt-api.crt \
+      signing_private_key=/etc/pki/salt-api.key \
+      CN=localhost
 
 ENTRYPOINT ["./entrypoint-master.sh"]
 

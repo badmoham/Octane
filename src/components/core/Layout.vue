@@ -357,22 +357,10 @@ export default {
 </script>
 
 <style>
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #f5f5f5;
-}
+  /* Import Elegant Theme */
+  @import url('./css/elegant-theme.css');
 
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #555;
-}
+  /* Custom scrollbar styles (superseded by elegant-theme but kept for override) */
 
 span .v-chip__content {
   white-space: nowrap;

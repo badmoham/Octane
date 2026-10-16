@@ -1,0 +1,390 @@
+/* ===========================================
+   Elegant Theme for Octane - Modern UI Design
+   =========================================== */
+
+:root {
+  /* Primary Colors - Professional & Clean */
+  --primary-color: #4A90E2;
+  --primary-light: #6BB3F4;
+  --primary-dark: #357ABD;
+  
+  /* Secondary Colors */
+  --secondary-color: #5856D6;
+  --accent-color: #FF6B6B;
+  
+  /* Neutral Colors - Soft & Modern */
+  --background-primary: #FFFFFF;
+  --background-secondary: #F8F9FA;
+  --background-tertiary: #ECECF0;
+  
+  /* Text Colors */
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --text-muted: #95A5A6;
+  --text-inverse: #FFFFFF;
+  
+  /* Status Colors */
+  --success-color: #1ABC9C;
+  --warning-color: #F39C12;
+  --error-color: #E74C3C;
+  --info-color: #3498DB;
+  
+  /* Border & Shadow Colors */
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-success: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  --gradient-error: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-round: 9999px;
+}
+
+/* ===========================================
+   Global Reset & Base Styles
+   =========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ===========================================
+   Card Styling - Modern & Elevated
+   =========================================== */
+
+.v-card {
+  background: var(--background-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.v-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.v-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===========================================
+   Navigation Drawer - Sleek & Professional
+   =========================================== */
+
+.v-navigation-drawer {
+  background: linear-gradient(180deg, #2D3748 0%, #1A202C 100%);
+}
+
+.v-list-item--nav {
+  border-radius: var(--radius-md) !important;
+  margin: var(--spacing-xs);
+  transition: all 0.2s ease;
+}
+
+.v-list-item--nav:hover,
+.v-list-item--nav:focus {
+  background: rgba(74, 144, 226, 0.15) !important;
+  transform: translateX(4px);
+}
+
+.v-list-item-title {
+  font-weight: 500;
+  color: var(--text-secondary) !important;
+}
+
+.v-list-item--nav:hover .v-list-item-title {
+  color: var(--primary-color) !important;
+}
+
+/* ===========================================
+   App Bar - Modern Header
+   =========================================== */
+
+.v-app-bar {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFC 100%);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.v-toolbar-title {
+  font-weight: 700 !important;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+/* ===========================================
+   Data Tables - Clean & Readable
+   =========================================== */
+
+.v-data-table__container {
+  border-radius: var(--radius-md);
+}
+
+.v-data-table th {
+  background: var(--background-tertiary) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  padding: var(--spacing-md) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+}
+
+.v-data-table td {
+  padding: var(--spacing-md) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  color: var(--text-primary) !important;
+}
+
+.v-data-table tbody tr:hover {
+  background-color: rgba(74, 144, 226, 0.05) !important;
+}
+
+/* ===========================================
+   Buttons - Modern Design System
+   =========================================== */
+
+.v-btn {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  transition: all 0.2s ease;
+}
+
+.v-btn--tile {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.v-btn--tile:hover {
+  background: rgba(74, 144, 226, 0.1) !important;
+  transform: translateY(-1px);
+}
+
+.v-btn--primary {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.v-btn--primary:hover {
+  background: var(--primary-dark) !important;
+  box-shadow: var(--shadow-md);
+}
+
+/* ===========================================
+   Status Chips - Colorful & Clear
+   =========================================== */
+
+.v-chip {
+  border-radius: var(--radius-round);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.v-chip--green {
+  background: rgba(26, 188, 156, 0.15) !important;
+  color: var(--success-color) !important;
+  border: 1px solid var(--success-color);
+}
+
+.v-chip--red {
+  background: rgba(231, 76, 60, 0.15) !important;
+  color: var(--error-color) !important;
+  border: 1px solid var(--error-color);
+}
+
+/* ===========================================
+   Search Fields - Clean Input Design
+   =========================================== */
+
+.v-text-field {
+  font-size: 0.875rem;
+}
+
+.v-text-field__input {
+  font-weight: 400;
+}
+
+.v-text-field:hover .v-field__overlay {
+  background: rgba(74, 144, 226, 0.05);
+}
+
+/* ===========================================
+   FAB Buttons - Modern Floating Action
+   =========================================== */
+
+.v-btn.fab {
+  border-radius: var(--radius-round);
+  box-shadow: var(--shadow-lg);
+}
+
+.v-btn.fab:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===========================================
+   Dialogs & Modals - Clean Overlays
+   =========================================== */
+
+.v-dialog__content {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.v-dialog__title {
+  font-weight: 600;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* ===========================================
+   Tooltips - Smooth & Helpful
+   =========================================== */
+
+.v-tooltip__content {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: var(--radius-sm);
+}
+
+/* ===========================================
+   Loading States - Visual Feedback
+   =========================================== */
+
+.v-skeleton-loader {
+  border-radius: var(--radius-md);
+}
+
+/* ===========================================
+   Hover Effects & Transitions
+   =========================================== */
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===========================================
+   Notification Badges - Elegant Design
+   =========================================== */
+
+.v-badge {
+  border-radius: var(--radius-round);
+  padding: 2px 8px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* ===========================================
+   Divider Lines - Subtle Separators
+   =========================================== */
+
+.v-divider {
+  border-color: var(--border-light) !important;
+}
+
+/* ===========================================
+   Scrollbars - Custom Styling
+   =========================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-tertiary);
+  border-radius: var(--radius-round);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(74, 144, 226, 0.3);
+  border-radius: var(--radius-round);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 144, 226, 0.5);
+}
+
+/* ===========================================
+   Code Editor Theme Integration
+   =========================================== */
+
+.CodeMirror-foldgutter {
+  color: var(--primary-color) !important;
+}
+
+.CodeMirror-linenumbers {
+  color: var(--text-muted) !important;
+}
+
+/* ===========================================
+   Responsive Improvements
+   =========================================== */
+
+@media (max-width: 600px) {
+  .v-navigation-drawer {
+    background: #FFFFFF;
+    border-right: 1px solid var(--border-light);
+  }
+  
+  .v-toolbar-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ===========================================
+   Dark Mode Support
+   =========================================== */
+
+.dark-theme .v-navigation-drawer,
+.dark-theme.v-application--is-dark .v-navigation-drawer {
+  background: linear-gradient(180deg, #1A202C 0%, #2D3748 100%);
+}
+
+.dark-theme .v-card {
+  background: #FFFFFF;
+  box-shadow: var(--shadow-md);
+}
+
+.dark-theme .v-data-table th {
+  background: #2D3748 !important;
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .v-data-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
